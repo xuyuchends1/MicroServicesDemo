@@ -7,5 +7,10 @@ namespace MicroServicesTests
         {
             Assert.Equal(1, 1);
         }
+        public void Test2()
+        {
+            Assert.Equal(0, 1);
+        }
+
     }
 }
