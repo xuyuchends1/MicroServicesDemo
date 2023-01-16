@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices", "MicroServices\MicroServices.csproj", "{17D5D02C-5ACE-49C3-8A71-1F977E61EC7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServicesTests", "MicroServicesTests\MicroServicesTests.csproj", "{F1B4326F-D1ED-4493-B934-B9F874C6F8EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{17D5D02C-5ACE-49C3-8A71-1F977E61EC7A} = {17D5D02C-5ACE-49C3-8A71-1F977E61EC7A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
