@@ -14,6 +14,7 @@
         {
             this.Id = id;
         }
+
         public Member(string firstName, string lastName, Guid id):this(id)
         {
             this.FirstName= firstName;

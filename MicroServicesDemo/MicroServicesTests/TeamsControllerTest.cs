@@ -1,5 +1,7 @@
 ﻿using MicroServices.Controllers;
 using MicroServices.Models;
+using MicroServices.Repository;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,20 @@ namespace MicroServicesTests
 {
     public class TeamsControllerTest
     {
-        [Fact]
-        public void Test1()
+        private ITeamRepository _repository;
+
+        public TeamsControllerTest()
         {
-            TeamsController teamsController=new TeamsController();
-            List<Team> teams = new List<Team>(teamsController.GetAllTeams());
-            Assert.Equal(2, teams.Count);
+            _repository=new MemoryTeamRepository();
+        }
+
+        [Fact]
+        public async void CreateTeamAddsTeamToList()
+        {
+            var teamsController = new TeamsController(_repository);
+            var team = new Team( "one", Guid.NewGuid());
+            var result =(await teamsController.AddTeam(team)) as StatusCodeResult;
+            Assert.IsType<OkResult>(result);
         }
     }
 }

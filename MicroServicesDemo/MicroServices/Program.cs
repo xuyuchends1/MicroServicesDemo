@@ -1,3 +1,5 @@
+using MicroServices.Repository;
+
 namespace MicroServices
 {
     public class Program
@@ -9,6 +11,7 @@ namespace MicroServices
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<ITeamRepository, MemoryTeamRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
