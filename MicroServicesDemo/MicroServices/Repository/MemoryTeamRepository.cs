@@ -23,6 +23,11 @@ namespace MicroServices.Repository
            Teams.Add(team);
         }
 
+        public void Clear()
+        {
+            Teams.Clear();
+        }
+
         public IEnumerable<Team> GetTeams()
         {
             return Teams;

@@ -6,5 +6,6 @@ namespace MicroServices.Repository
     {
         IEnumerable<Team> GetTeams();
         void AddTeam(Team team);
+        void Clear();
     }
 }

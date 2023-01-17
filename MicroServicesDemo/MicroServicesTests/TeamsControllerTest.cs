@@ -16,16 +16,18 @@ namespace MicroServicesTests
 
         public TeamsControllerTest()
         {
-            _repository=new MemoryTeamRepository();
+            _repository = new MemoryTeamRepository();
         }
 
         [Fact]
         public async void CreateTeamAddsTeamToList()
         {
             var teamsController = new TeamsController(_repository);
-            var team = new Team( "one", Guid.NewGuid());
-            var result =(await teamsController.AddTeam(team)) as StatusCodeResult;
+            var team = new Team("one", Guid.NewGuid());
+            var result = (await teamsController.AddTeam(team)) as StatusCodeResult;
             Assert.IsType<OkResult>(result);
+
+            _repository.Clear();
         }
     }
 }
