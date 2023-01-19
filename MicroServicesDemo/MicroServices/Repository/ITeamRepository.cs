@@ -1,11 +1,13 @@
-﻿using MicroServices.Models;
+using MicroServices.Models;
 
 namespace MicroServices.Repository
 {
-    public interface ITeamRepository
-    {
-        IEnumerable<Team> GetTeams();
-        void AddTeam(Team team);
-        void Clear();
+	public interface ITeamRepository {
+	    IEnumerable<Team> List();
+		Team Get(Guid id);
+		Team Add(Team team);
+		Team Update(Team team);		
+		Team Delete(Guid id);
+		void Clear();
     }
 }

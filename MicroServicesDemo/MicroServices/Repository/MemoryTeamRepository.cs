@@ -1,36 +1,61 @@
-﻿using MicroServices.Models;
+using MicroServices.Models;
 
 namespace MicroServices.Repository
 {
-    public class MemoryTeamRepository : ITeamRepository
-    {
-        protected static ICollection<Team> Teams; 
+	public class MemoryTeamRepository : ITeamRepository
+	{
+		protected static ICollection<Team> _teams;
 
-        public MemoryTeamRepository()
-        {
-            if (Teams == null)
-            {
-                Teams = new List<Team>();
-            }
-        }
-        public MemoryTeamRepository(ICollection<Team> teams)
-        {
-            Teams = teams;
-        }
+		public MemoryTeamRepository() {
+			if(_teams == null) {
+				_teams = new List<Team>();
+			}
+		}
 
-        public void AddTeam(Team team)
-        {
-           Teams.Add(team);
-        }
+		public MemoryTeamRepository(ICollection<Team> teams) {
+			_teams = teams;
+		}
+
+		public IEnumerable<Team> List() {
+			return _teams; 
+		}
+
+		public Team Get(Guid id) {
+			return _teams.FirstOrDefault(t => t.ID == id);			
+		}
+
+		public Team Update(Team t) 
+		{
+			Team team = this.Delete(t.ID);
+	
+			if(team != null) {
+				team = this.Add(t);
+			}
+
+			return team;
+		}
+
+		public Team Add(Team team) 
+		{
+			_teams.Add(team);
+			return team;
+		}
+
+		public Team Delete(Guid id) {	
+			var q = _teams.Where(t => t.ID == id);
+			Team team = null;
+
+			if (q.Count() > 0) {				
+				team = q.First();
+				_teams.Remove(team);
+			}							
+
+			return team; 			
+		}
 
         public void Clear()
         {
-            Teams.Clear();
-        }
-
-        public IEnumerable<Team> GetTeams()
-        {
-            return Teams;
+			_teams.Clear();
         }
     }
 }

@@ -1,9 +1,11 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using LocationService.Models;
+using LocationService.Repository;
 
-namespace LocationService.Controllers {
-    
+namespace LocationService.Controllers
+{
+
     [Route("locations/{memberId}")]
     public class LocationRecordController : Controller {
 

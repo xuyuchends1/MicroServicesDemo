@@ -1,9 +1,9 @@
-﻿namespace MicroServices.Models
+namespace MicroServices.Models
 {
-    public class Team
-    {
-        public Guid Id { get; set; }
+    public class Team {
+
         public string Name { get; set; }
+        public Guid ID { get; set; }
         public ICollection<Member> Members { get; set; }
 
         public Team()
@@ -16,13 +16,12 @@
             this.Name = name;
         }
 
-        public Team(string name, Guid id) : this(name)
+        public Team(string name, Guid id)  : this(name) 
         {
-            this.Id = id;
+            this.ID = id;
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return this.Name;
         }
     }
